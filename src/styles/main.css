@@ -231,3 +231,38 @@ body {
 .logout-btn:hover {
   background: #fadbd8;
 }
+
+/* submissions list */
+.submission-filters {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.submission-filters button {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.submission-filters button.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.submission-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.graded-info {
+  margin-top: 10px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}

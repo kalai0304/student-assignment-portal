@@ -5,7 +5,6 @@ import { AuthContext } from '../auth/AuthContext';
 const Submissions = () => {
     
   const {user} = useContext(AuthContext);
-  const [role, setRole] = useState(user?.role);
   const [submissions, setSubmissions] = useState([]);
   useEffect(() => {
     // Fetch submissions from API
@@ -29,6 +28,15 @@ const Submissions = () => {
         graded: true,
         marks: 45,
         feedback: 'Excellent work!'
+      },
+      {
+        id: 3,
+        assignmentTitle: 'Computer Project',
+        studentName: 'Robbert Moore',
+        submissionDate: '2023-06-15',
+        fileName: 'computer_project.zip',
+        maxMarks: 50,
+        graded: false,
       }
     ];
     setSubmissions(mockSubmissions);
@@ -36,16 +44,21 @@ const Submissions = () => {
 
   const handleGradeSubmission = (submissionId, gradeData) => {
     // API call to submit grade
-    console.log('Grading submission:', submissionId, gradeData);
+    console.log('Grading submission:', submissionId+" Mark: "+gradeData.marks+" Feedback "+gradeData.feedback);
+    // setSubmissions((prev)=>prev.map(sub =>{
+    //     sub.id === submissionId
+    //         ? {...sub,graded:true,...gradeData}
+    //         : sub
+    // }))
   };
-
+    
   return (
     <div className="submissions-page">
       <h2>{user?.role === 'teacher' ? 'Student Submissions' : 'Your Submissions'}</h2>
       
       <SubmissionList 
         submissions={submissions} 
-        role={role} 
+        role={user?.role} 
         onGrade={handleGradeSubmission}
       />
     </div>
