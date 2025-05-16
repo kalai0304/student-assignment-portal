@@ -11,8 +11,14 @@ import Submissions from './pages/Submissions';
 import RedirectByRole from './components/RedirectByRole';
 import './styles/main.css';
 import Signup from './pages/Signup';
+import GradeAssignment from './components/ GradeAssignment';
+import SubmissionList from './components/SubmissionList';
 
 function App() {
+  const handleGrade = (submissionId, gradeData) => {
+    console.log('Grading submission:', submissionId, gradeData);
+   
+  };
   return (
     <Router>
       <AuthProvider>
@@ -26,6 +32,7 @@ function App() {
           <Route path="/create-assignment" element={<CreateAssignment />} />
           <Route path="/submissions" element={<Submissions />} />
           <Route path="/my-submissions" element={<Submissions studentView />} />
+          <Route path='submissions/grade/:submissionId' element={<GradeAssignment onGrade={handleGrade} />} />
         </Routes>
       </AuthProvider>
     </Router>

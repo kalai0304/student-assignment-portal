@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const GradeAssignment = ({ submission, onGrade }) => {
+const GradeAssignment = ({ submission, onGrade , onClose }) => {
   const [marks, setMarks] = useState(submission.marks || 0);
-  const [feedback, setFeedback] = useState(submission.feedback || '');
+  const [feedback, setFeedback] = useState(submission.feedback || "");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,17 +11,21 @@ const GradeAssignment = ({ submission, onGrade }) => {
 
   return (
     <div className="grade-assignment">
+      <button className="close-button" onClick={onClose}>
+        ×
+      </button>
+      <h3>Grade Submission</h3>
       <h4>Student: {submission.studentName}</h4>
       <p>Submission: {submission.fileName}</p>
       <p>Submitted on: {submission.submissionDate}</p>
-      
+
       <form onSubmit={handleSubmit}>
         <label>
           Marks:
-          <input 
-            type="number" 
-            value={marks} 
-            onChange={(e) => setMarks(e.target.value)} 
+          <input
+            type="number"
+            value={marks}
+            onChange={(e) => setMarks(e.target.value)}
             max={submission.maxMarks}
             required
           />
@@ -29,9 +33,9 @@ const GradeAssignment = ({ submission, onGrade }) => {
         </label>
         <label>
           Feedback:
-          <textarea 
-            value={feedback} 
-            onChange={(e) => setFeedback(e.target.value)} 
+          <textarea
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
             required
           />
         </label>

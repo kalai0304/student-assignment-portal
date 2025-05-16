@@ -4,7 +4,6 @@ import { AuthContext } from '../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Assignments = () => {
-  const [role, setRole] = useState('student');
   const [assignments, setAssignments] = useState([]);
   const {user} = useContext(AuthContext);
   const navigate = useNavigate();
@@ -25,14 +24,14 @@ const Assignments = () => {
 
   return (
     <div className="assignments-page">
-      <h2>{role === 'teacher' ? 'Manage' : 'View'} Assignments</h2>
+      <h2>{user?.role === 'teacher' ? 'Manage' : 'View'} Assignments</h2>
       
       <div className="assignments-list">
         {assignments.map(assignment => (
           <AssignmentCard
             key={assignment.id}
             assignment={assignment}
-            role={role}
+            role={user?.role}
           />
         ))}
       </div>
